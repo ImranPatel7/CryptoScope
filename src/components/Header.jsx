@@ -9,6 +9,7 @@ const Header = () => {
       p={4}
       shadow={"base"}
       bgColor={"blackAlpha.900"}
+      spacing={10}
     >
       <Button variant={"unstyled"} color={"white"}>
         <Link to="/">Home</Link>
