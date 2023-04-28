@@ -14,6 +14,7 @@ import {
   StatArrow,
   Badge,
   Progress,
+  Button,
 } from "@chakra-ui/react";
 import React, { useState, useEffect } from "react";
 import Loader from "./Loader";
@@ -21,24 +22,82 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import { server } from "../index";
 import ErrorComponent from "./ErrorComponent";
+import Chart from "./Chart";
 
 const CoinDetails = () => {
+  const params = useParams();
   const [coin, setCoin] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [currency, setCurrency] = useState("inr");
+  const [days, setDays] = useState("24h");
+  const [chartArray, setChartArray] = useState([]);
 
   const currencySymbol =
     currency === "inr" ? "₹" : currency === "eur" ? "€" : "$";
 
-  const params = useParams();
+  const btns = ["24h", "7d", "14d", "30d", "60d", "200d", "1y", "max"];
+
+  const switchChartStats = (key) => {
+    switch (key) {
+      case "24h":
+        setDays("24h");
+        setLoading(true);
+        break;
+
+      case "7d":
+        setDays("7d");
+        setLoading(true);
+        break;
+
+      case "14d":
+        setDays("14d");
+        setLoading(true);
+        break;
+
+      case "30d":
+        setDays("30d");
+        setLoading(true);
+        break;
+
+      case "60d":
+        setDays("60d");
+        setLoading(true);
+        break;
+
+      case "200d":
+        setDays("200d");
+        setLoading(true);
+        break;
+
+      case "1y":
+        setDays("365d");
+        setLoading(true);
+        break;
+
+      case "max":
+        setDays("max");
+        setLoading(true);
+        break;
+
+      default:
+        setDays("24h");
+        setLoading(true);
+        break;
+    }
+  };
 
   useEffect(() => {
     const fetchCoin = async () => {
       try {
         const { data } = await axios.get(`${server}/coins/${params.id}`);
-        //console.log(data);
+
+        const { data: chartData } = await axios.get(
+          `${server}/coins/${params.id}/market_chart?vs_currency=${currency}&days=${days}`
+        );
+
         setCoin(data);
+        setChartArray(chartData.prices);
         setLoading(false);
       } catch (error) {
         setError(true);
@@ -46,7 +105,7 @@ const CoinDetails = () => {
       }
     };
     fetchCoin();
-  }, [params.id]);
+  }, [params.id, currency, days]);
 
   if (error)
     return <ErrorComponent message={"Error While Fetching CoinDetails..."} />;
@@ -58,8 +117,16 @@ const CoinDetails = () => {
       ) : (
         <>
           <Box width={"full"} borderWidth={1}>
-            aaaaaa
+            <Chart arr={chartArray} currency={currencySymbol} days={days} />
           </Box>
+
+          <HStack p={"4"} overflowX={"auto"} justifyContent={"center"}>
+            {btns.map((i) => (
+              <Button key={i} onClick={() => switchChartStats(i)}>
+                {i}
+              </Button>
+            ))}
+          </HStack>
 
           <RadioGroup value={currency} onChange={setCurrency} p={"8"}>
             <HStack

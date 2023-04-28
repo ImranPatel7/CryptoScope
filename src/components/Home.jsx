@@ -8,13 +8,15 @@ const Home = () => {
     <Box bgColor={"blackAlpha.900"} w={"full"} h={"85vh"}>
       <motion.div
         style={{
-          height: "80vh",
+          height: "90vh",
         }}
         animate={{
-          translateY: "20px",
+          translateY: "80px",
+          // translateX: "80px",
+          // translateZ: "80px",
         }}
         transition={{
-          duration: 2,
+          duration: 1.5,
           repeat: Infinity,
           repeatType: "reverse",
         }}
@@ -24,7 +26,7 @@ const Home = () => {
           h={"full"}
           objectFit={"contain"}
           src={btcSrc}
-          filter={"grayscale(1)"}
+          // filter={"grayscale(1)"}
         />
       </motion.div>
 
