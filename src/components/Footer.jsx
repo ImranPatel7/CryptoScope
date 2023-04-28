@@ -6,11 +6,11 @@ const Footer = () => {
     <Box
       bgColor={"blackAlpha.900"}
       color={"whiteAlpha.700"}
-      minH={"16"}
+      minH={"8"}
       px={"16"}
-      py={["16", "8"]}
+      py={["8", "2"]}
     >
-      <Stack direction={["column", "row"]} h={"full"} alignItems={"center"}>
+      <Stack alignItems={"center"}>
         <VStack w={"full"} alignItems={"center"}>
           <Text fontWeight={"bold"} justifyContent={"center"}>
             CryptoScope
