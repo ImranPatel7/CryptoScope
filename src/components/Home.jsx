@@ -16,7 +16,7 @@ const Home = () => {
           height: "100vh",
         }}
         animate={{
-          translateY: "80px",
+          translateY: "45px",
           // translateX: "80px",
           // translateZ: "80px",
         }}

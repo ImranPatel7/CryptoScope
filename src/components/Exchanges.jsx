@@ -37,7 +37,7 @@ const Exchanges = () => {
     return <ErrorComponent message={"Error While Fetching Exchanges..."} />;
 
   return (
-    <Container maxW={"container.xl"}>
+    <Container maxW={"container.xl"} p="20">
       {loading ? (
         <Loader />
       ) : (
@@ -63,7 +63,7 @@ const ExchangeCard = ({ name, img, rank, url }) => (
   <a href={url} target={"blank"}>
     <VStack
       w={"52"}
-      shadow={"lg"}
+      shadow={"xl"}
       p={"8"}
       borderRadius={"lg"}
       transition={"all 0.3s"}
