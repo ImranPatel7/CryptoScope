@@ -29,7 +29,7 @@ const Coins = () => {
         const { data } = await axios.get(
           `${server}/coins/markets?vs_currency=${currency}&page=${page}`
         );
-        //console.log(data);
+        // console.log(data);
         setCoins(data);
         setLoading(false);
       } catch (error) {
@@ -54,7 +54,9 @@ const Coins = () => {
               justifyContent={["center", "space-evenly"]}
               spacing={"4"}
               p={"8"}
-              bgColor={"lightGray"}
+              bgColor={"blackAlpha.800"}
+              color={"white"}
+              borderRadius="xl"
             >
               <Radio size="lg" value={"inr"}>
                 INR(₹)
@@ -67,6 +69,7 @@ const Coins = () => {
               </Radio>
             </HStack>
           </RadioGroup>
+
           <HStack wrap={"wrap"} justifyContent={["center", "space-evenly"]}>
             {coins.map((i) => (
               <CoinCard

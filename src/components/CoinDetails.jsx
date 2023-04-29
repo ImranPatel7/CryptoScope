@@ -133,7 +133,6 @@ const CoinDetails = () => {
               justifyContent={["center", "space-evenly"]}
               spacing={"4"}
               p={"8"}
-              bgColor={"lightGray"}
             >
               <Radio size="lg" value={"inr"}>
                 INR(₹)
@@ -147,7 +146,7 @@ const CoinDetails = () => {
             </HStack>
           </RadioGroup>
 
-          <VStack spacing={"4"} p="16" alignItems={"flex-start"}>
+          <VStack spacing={"4"} p="16" justifyContent={"center"}>
             <Text fontSize={"small"} alignSelf="center" opacity={0.7}>
               Last updated on
               {Date(coin.market_data.last_updated).split("G")[0]}
